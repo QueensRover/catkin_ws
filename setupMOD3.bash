@@ -21,11 +21,12 @@ git config --global credential.helper store
 git clone https://gitlab.com/qset_rover/ros-gazebo.git
 git clone https://gitlab.com/qset_rover/gazebo-launch
 git clone https://gitlab.com/qset_rover/ros-tf-transforms 
-cd ros-tf-transforms git checkout ubuntuCompliant
+cd ros-tf-transforms 
+git checkout ubuntuCompliant
 cd ~/catkin_ws/src
 git clone https://gitlab.com/qset_rover/gazebo_plugins
 git clone https://gitlab.com/qset_rover/wheel-control
-git clone git@gitlab.com:qset_rover/phidgets_drivers.git
+git clone https://gitlab.com/qset_rover/phidgets_drivers.git
 cd ~/catkin_ws
 catkin build owen_launch hector_gazebo_plugins wheel_control tf_transforms 
 cp ~/catkin_ws/src/ros-gazebo/plugins/build/*.so ~/catkin_ws/devel/lib
