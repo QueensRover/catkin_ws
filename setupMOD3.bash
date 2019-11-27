@@ -27,8 +27,16 @@ cd ~/catkin_ws/src
 git clone https://gitlab.com/qset_rover/gazebo_plugins
 git clone https://gitlab.com/qset_rover/wheel-control
 git clone https://gitlab.com/qset_rover/phidgets_drivers.git
+git clone https://gitlab.com/qset_rover/ros_sabertooth
 cd ~/catkin_ws
 catkin build owen_launch hector_gazebo_plugins wheel_control tf_transforms 
 cp ~/catkin_ws/src/ros-gazebo/plugins/build/*.so ~/catkin_ws/devel/lib
+sudo cp ~/catkin_ws/src/ros-gazebo/rover_real_model /usr/share/gazebo-9/models/
 sudo echo "export GAZEBO_PLUGIN_PATH=~/catkin_ws/devel/lib" >> ~/.bashrc
 source ~/catkin_ws/devel/setup.bash
+sudo apt install libjansson-dev nodejs npm nodejs-legacy libboost-dev imagemagick libtinyxml-dev mercurial cmake build-essential
+cd ~; hg clone https://bitbucket.org/osrf/gzweb
+cd ~/gzweb
+hg up gzweb_1.4.0
+source /usr/share/gazebo/setup.sh
+npm run deploy --- -m
