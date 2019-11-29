@@ -34,6 +34,7 @@ catkin build owen_launch hector_gazebo_plugins wheel_control tf_transforms
 cp ~/catkin_ws/src/ros-gazebo/plugins/build/*.so ~/catkin_ws/devel/lib
 sudo cp -r ~/catkin_ws/src/ros-gazebo/rover_real_model /usr/share/gazebo-9/models/
 sudo echo "export GAZEBO_PLUGIN_PATH=~/catkin_ws/devel/lib" >> ~/.bashrc
+sudo echo "export DISPLAY=:0" >> ~/.bashrc
 source ~/catkin_ws/devel/setup.bash
 sudo apt install libjansson-dev nodejs npm nodejs-legacy libboost-dev imagemagick libtinyxml-dev mercurial cmake build-essential
 cd ~; hg clone https://bitbucket.org/osrf/gzweb
