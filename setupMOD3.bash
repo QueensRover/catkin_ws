@@ -13,9 +13,10 @@ wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install python-catkin-tools
 source /opt/ros/kinetic/setup.bash
+source ~/.bashrc
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
-catkin init
+catkin_make
 source devel/setup.bash
 cd ~/catkin_ws/src
 git config --global credential.helper store
@@ -40,5 +41,12 @@ sudo apt install libjansson-dev nodejs npm nodejs-legacy libboost-dev imagemagic
 cd ~; hg clone https://bitbucket.org/osrf/gzweb
 cd ~/gzweb
 sudo hg up gzweb_1.4.0
+sudo apt-get remove ros-kinetic-gazebo*
+sudo apt-get remove libgazebo*
+sudo apt-get remove gazebo*
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+sudo apt-get update
+sudo apt-get install ros-kinetic-gazebo9-*
 source /usr/share/gazebo/setup.sh
 npm run deploy --- -m
