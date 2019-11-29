@@ -37,10 +37,6 @@ sudo cp -r ~/catkin_ws/src/ros-gazebo/rover_real_model /usr/share/gazebo-9/model
 sudo echo "export GAZEBO_PLUGIN_PATH=~/catkin_ws/devel/lib" >> ~/.bashrc
 sudo echo "export DISPLAY=:0" >> ~/.bashrc
 source ~/catkin_ws/devel/setup.bash
-sudo apt install libjansson-dev nodejs npm nodejs-legacy libboost-dev imagemagick libtinyxml-dev mercurial cmake build-essential
-cd ~; hg clone https://bitbucket.org/osrf/gzweb
-cd ~/gzweb
-sudo hg up gzweb_1.4.0
 sudo apt-get remove ros-kinetic-gazebo*
 sudo apt-get remove libgazebo*
 sudo apt-get remove gazebo*
@@ -49,4 +45,3 @@ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install ros-kinetic-gazebo9-*
 source /usr/share/gazebo/setup.sh
-npm run deploy --- -m
