@@ -18,6 +18,7 @@ mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/
 catkin_make
 source devel/setup.bash
+sudo echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 cd ~/catkin_ws/src
 git config --global credential.helper store
 git clone https://gitlab.com/qset_rover/ros-gazebo.git
@@ -27,21 +28,26 @@ cd ros-tf-transforms
 git checkout ubuntuCompliant
 cd ~/catkin_ws/src
 git clone https://gitlab.com/qset_rover/gazebo_plugins
+cd gazebo_plugins
+git checkout forWindows
+cd ~/catkin_ws/src
 git clone https://gitlab.com/qset_rover/wheel-control
 git clone https://gitlab.com/qset_rover/phidgets_drivers.git
 git clone https://gitlab.com/qset_rover/ros_sabertooth
 cd ~/catkin_ws
-catkin build owen_launch hector_gazebo_plugins wheel_control tf_transforms 
-cp ~/catkin_ws/src/ros-gazebo/plugins/build/*.so ~/catkin_ws/devel/lib
-sudo cp -r ~/catkin_ws/src/ros-gazebo/rover_real_model /usr/share/gazebo-9/models/
-sudo echo "export GAZEBO_PLUGIN_PATH=~/catkin_ws/devel/lib" >> ~/.bashrc
-sudo echo "export DISPLAY=:0" >> ~/.bashrc
-source ~/catkin_ws/devel/setup.bash
-sudo apt-get remove ros-kinetic-gazebo*
-sudo apt-get remove libgazebo*
-sudo apt-get remove gazebo*
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install ros-kinetic-gazebo9-*
 source /usr/share/gazebo/setup.sh
+cd ~/catkin_ws/src/ros-gazebo/plugins/build
+cmake ..
+make
+cp ~/catkin_ws/src/ros-gazebo/plugins/build/*.so ~/catkin_ws/devel/lib
+cd ~/catkin_ws/
+catkin build owen_launch hector_gazebo_plugins wheel_control tf_transforms 
+sudo cp -r ~/catkin_ws/src/ros-gazebo/rover_real_model /usr/share/gazebo-9/models/
+sudo echo "export GAZEBO_PLUGIN_PATH=~/catkin_ws/devel/lib" >> ~/.bashrc
+sudo echo "export DISPLAY=:0" >> ~/.bashrc
+
+
