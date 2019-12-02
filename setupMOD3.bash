@@ -40,13 +40,14 @@ wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install ros-kinetic-gazebo9-*
 source /usr/share/gazebo/setup.sh
+cd ~/catkin_ws/
+catkin init
+catkin clean
+catkin build owen_launch hector_gazebo_plugins wheel_control tf_transforms 
 cd ~/catkin_ws/src/ros-gazebo/plugins/build
 cmake ..
 make
 cp ~/catkin_ws/src/ros-gazebo/plugins/build/*.so ~/catkin_ws/devel/lib
-cd ~/catkin_ws/
-catkin init
-catkin build owen_launch hector_gazebo_plugins wheel_control tf_transforms 
 sudo cp -r ~/catkin_ws/src/ros-gazebo/rover_real_model /usr/share/gazebo-9/models/
 sudo echo "export GAZEBO_PLUGIN_PATH=~/catkin_ws/devel/lib" >> ~/.bashrc
 sudo echo "export DISPLAY=:0" >> ~/.bashrc
