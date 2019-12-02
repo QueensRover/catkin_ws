@@ -45,6 +45,7 @@ cmake ..
 make
 cp ~/catkin_ws/src/ros-gazebo/plugins/build/*.so ~/catkin_ws/devel/lib
 cd ~/catkin_ws/
+catkin init
 catkin build owen_launch hector_gazebo_plugins wheel_control tf_transforms 
 sudo cp -r ~/catkin_ws/src/ros-gazebo/rover_real_model /usr/share/gazebo-9/models/
 sudo echo "export GAZEBO_PLUGIN_PATH=~/catkin_ws/devel/lib" >> ~/.bashrc
