@@ -20,20 +20,8 @@ catkin_make
 source devel/setup.bash
 sudo echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 cd ~/catkin_ws/src
-git config --global credential.helper store
-git clone https://gitlab.com/qset_rover/ros-gazebo.git
-git clone https://gitlab.com/qset_rover/gazebo-launch
-git clone https://gitlab.com/qset_rover/ros-tf-transforms 
-cd ros-tf-transforms 
-git checkout ubuntuCompliant
-cd ~/catkin_ws/src
-git clone https://gitlab.com/qset_rover/gazebo_plugins
-cd gazebo_plugins
-git checkout forWindows
-cd ~/catkin_ws/src
-git clone https://gitlab.com/qset_rover/wheel-control
-git clone https://gitlab.com/qset_rover/phidgets_drivers.git
-git clone https://gitlab.com/qset_rover/ros_sabertooth
+sudo cp -r ~/unified_launch/* ./
+sudo rm -r ./.git
 cd ~/catkin_ws
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
 wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
