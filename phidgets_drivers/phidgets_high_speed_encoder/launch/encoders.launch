@@ -1,0 +1,5 @@
+<launch>
+  <node name="wheel_phidget" pkg="phidgets_high_speed_encoder" type="phidgets_high_speed_encoder" output="screen">
+    <rosparam command="load" file="$(find phidgets_high_speed_encoder)/config/params.yaml" />
+  </node>
+</launch>
