@@ -1,7 +1,5 @@
 <launch>
-    <include file="$(find owen_launch)/launch/dual_ekf_navsat.launch"/>
-    <include file="$(find tf_transforms)/launch/tf_gazebo_transforms.launch"/>
-    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+   <include file="$(find gazebo_ros)/launch/empty_world.launch">
         <arg name="world_name" value="$(find owen_launch)/worlds/world_with_rover.world"/>
         <arg name="paused" value="false"/>
         <arg name="use_sim_time" value="true"/>
