@@ -3,7 +3,6 @@ import rospy  # this is the module required for all simulation communication
 # start of wheel control code
 from wheel_control.msg import wheelSpeed  # this is a required module for the drive communication
 
-
 class WheelController:
 
     def __init__(self):
@@ -41,7 +40,7 @@ class LaserListener:
 # end of laser scan code access laserRanges for an array of all measured distances from the laser sensors
 
 # start of localization stuff
-from sensor_msgs.msg import NavSatFix
+from geometry_msgs.msg import Point
 from std_msgs.msg import Float32
 
 
@@ -49,16 +48,18 @@ class LocationHeading:
 
     def __init__(self):
         rospy.init_node("location_listener")
-        self.fixSub = rospy.Subscriber("/fix", self.fix_callback, queue_size=1)  # TODO verify topic name
-        self.headingSub = rospy.Subscriber("/heading", self.heading_callback, queue_size=1)  # TODO verify topic name
-        self.lat = 0.0
-        self.lon = 0.0
+        self.fixSub = rospy.Subscriber("/fix/metres", Point, self.fix_callback, queue_size=1)
+        self.headingSub = rospy.Subscriber("/heading",Float32, self.heading_callback, queue_size=1)
+        self.x = 0.0
+        self.y = 0.0
+        self.z = 0.0
         self.heading = 0.0
 
     def fix_callback(self, msg):
-        # type: (NavSatFix) -> None
-        self.lat = msg.latitude
-        self.lon = msg.longitude
+        # type: (Point) -> None
+        self.x = msg.x
+        self.y = msg.y
+        self.z = msg.z
 
     def heading_callback(self, msg):
         # type: (Float32) -> None
@@ -67,25 +68,6 @@ class LocationHeading:
 
 # end of localization stuff
 
-# start of destination listening code
-from std_msgs.msg import Float32MultiArray
-
-
-class Destination:
-
-    def __init__(self):
-        rospy.init_node("destination_listener")
-        self.lat = 0.0
-        self.lon = 0.0
-        self.destSub = rospy.Subscriber("/destination", Float32MultiArray, self.destination_callback, queue_size=1)
-
-    def destination_callback(self, msg):
-        # type: (Float32MultiArray) -> None
-        self.lat = msg.data[0]
-        self.lon = msg.data[1]
-
-
-# end of destination listening code
 
 # start of control loop snippet
 

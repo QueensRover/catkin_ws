@@ -796,6 +796,7 @@
       </joint>
       <static>0</static>
       <allow_auto_disable>1</allow_auto_disable>
+      <plugin name='location_plugin' filename='/libgps_plugin.so'/>
       <plugin name='rover_plugin' filename='/librover_plugin.so'/>
       <plugin name='rover_gps_plugin' filename='/libhector_gazebo_ros_gps.so'>
         <frameId>map</frameId>
@@ -812,7 +813,7 @@
         <yawGaussianNoise>0</yawGaussianNoise>
         <yawScaleError>0</yawScaleError>
       </plugin>
-      <plugin name='rover_gps_plugin' filename='/libhector_gazebo_ros_magnetic.so'>
+      <plugin name='rover_gps_plugin' filename='/libhector_gazebo_ros_magnetic.soTEMP'>
         <frameId>rover</frameId>
       </plugin>
       <plugin name='rover_imu_plugin' filename='/libhector_gazebo_ros_imu.so'>
