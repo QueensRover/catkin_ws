@@ -21,7 +21,7 @@ catkin_make
 source devel/setup.bash
 sudo echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 cd ~/catkin_ws/src
-sudo cp -r ~/unified_launch/* ~/catkin_ws/src/
+sudo cp -r ~/unified-launch/* ~/catkin_ws/src/
 sudo rm -r ./.git
 cd ~/catkin_ws
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
