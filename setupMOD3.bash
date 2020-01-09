@@ -12,6 +12,7 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main"
 wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
 sudo apt-get update
 sudo apt-get install python-catkin-tools
+
 source /opt/ros/kinetic/setup.bash
 source ~/.bashrc
 mkdir -p ~/catkin_ws/src
@@ -20,7 +21,7 @@ catkin_make
 source devel/setup.bash
 sudo echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 cd ~/catkin_ws/src
-sudo cp -r ~/unified_launch/* ./
+sudo cp -r ~/unified_launch/* ~/catkin_ws/src/
 sudo rm -r ./.git
 cd ~/catkin_ws
 sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
