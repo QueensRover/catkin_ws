@@ -28,11 +28,11 @@ void GpsPlugin::QueueThread() {
     ros::Rate loop_rate(10);
     while (ros::ok())
     {
-        math::Pose pose = link->GetWorldPose();
+        ignition::math::Pose3d pose = link->WorldPose();
         geometry_msgs::Point msg;
-        msg.x = pose.pos.x;
-        msg.y = pose.pos.y;
-        msg.z = pose.pos.z;
+        msg.x = pose.Pos().X();
+        msg.y = pose.Pos().Y();
+        msg.z = pose.Pos().Z();
 
         posPub.publish(msg);
         loop_rate.sleep();
