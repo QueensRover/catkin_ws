@@ -34,6 +34,7 @@ catkin init
 catkin clean
 catkin build owen_launch hector_gazebo_plugins wheel_control tf_transforms 
 cd ~/catkin_ws/src/ros-gazebo/plugins/build
+sudo rm ./CMake*
 sudo cmake ..
 sudo make
 cp ~/catkin_ws/src/ros-gazebo/plugins/build/*.so ~/catkin_ws/devel/lib
