@@ -1,13 +1,17 @@
+#start of code snippets
+
+
 import rospy  # this is the module required for all simulation communication
 
 # start of wheel control code
 from wheel_control.msg import wheelSpeed  # this is a required module for the drive communication
 
+rospy.init_node("controller")
+
 class WheelController:
 
     def __init__(self):
-        rospy.init_node("wheel_controller")
-        self.wheel_pub = rospy.Publisher("/gazebo/wheelSpeedTopic", wheelSpeed, queue_size=1)  # TODO verify topic name
+        self.wheel_pub = rospy.Publisher("/gazebo_wheelControl/wheelSpeedTopic", wheelSpeed, queue_size=1)
 
     def drive_wheels(self, left, right):
         # type: (float, float) -> None
@@ -17,6 +21,7 @@ class WheelController:
         msg.right = right
         msg.wheelMode = 0
         self.wheel_pub.publish(msg)
+        #print(msg)
 
 
 # end of wheel control code
@@ -28,9 +33,8 @@ from sensor_msgs.msg import LaserScan
 class LaserListener:
 
     def __init__(self):
-        rospy.init_node("laser_listener")
-        self.laserSub = rospy.Subscriber("/leddar/data", self.laser_callback, queue_size=1)  # TODO verify this
-        self.laserRanges = []
+        self.laserSub = rospy.Subscriber("/leddar/leddarData", LaserScan, self.laser_callback, queue_size=1)
+        self.laserRanges = [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 
     def laser_callback(self, msg):
         # type: (LaserScan) -> None
@@ -47,7 +51,6 @@ from std_msgs.msg import Float32
 class LocationHeading:
 
     def __init__(self):
-        rospy.init_node("location_listener")
         self.fixSub = rospy.Subscriber("/fix/metres", Point, self.fix_callback, queue_size=1)
         self.headingSub = rospy.Subscriber("/heading",Float32, self.heading_callback, queue_size=1)
         self.x = 0.0
@@ -69,9 +72,25 @@ class LocationHeading:
 # end of localization stuff
 
 
+#initiallize classes to get and send data to gazebo
+locHead  = LocationHeading()
+laser = LaserListener()
+wheel = WheelController()
+#end of initialization
+
 # start of control loop snippet
 
 while not rospy.is_shutdown():
-    print("do your controlling here")
+    minRange = 99
+
+    for x in range(0, 15):
+        if laser.laserRanges[x] < minRange:
+            minRange = laser.laserRanges[x]
+    if minRange < 3:
+        wheel.drive_wheels(1, -1)
+    else:
+        wheel.drive_wheels(1, 1)
+    if laser.laserRanges[0] is not None:
+        print("Current Heading: ", locHead.heading, "Current x val: ", locHead.x, "RightMostLaser: ", laser.laserRanges[0])
 
 # end of control loop snippet
