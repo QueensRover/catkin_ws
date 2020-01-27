@@ -80,17 +80,15 @@ wheel = WheelController()
 
 # start of control loop snippet
 
-while not rospy.is_shutdown():
-    minRange = 99
-
-    for x in range(0, 15):
-        if laser.laserRanges[x] < minRange:
-            minRange = laser.laserRanges[x]
-    if minRange < 3:
-        wheel.drive_wheels(1, -1)
+while not rospy.is_shutdown():  #this will run until gazebo is shut down or CTRL+C is pressed in the ubuntu window that is running this code
+    minRange = 99 #initialize minRange to a value larger than what will be recieved
+    for x in range(0, 15): #iterate through the ranges list
+        if laser.laserRanges[x] < minRange: #if the current range is smaller than the smallest know range
+            minRange = laser.laserRanges[x] #update the range
+    if minRange < 3: #if there is something closer than 3m infront of the rover
+        wheel.drive_wheels(1, -1) #turn
     else:
-        wheel.drive_wheels(1, 1)
-    if laser.laserRanges[0] is not None:
-        print("Current Heading: ", locHead.heading, "Current x val: ", locHead.x, "RightMostLaser: ", laser.laserRanges[0])
+        wheel.drive_wheels(1, 1) #go staright
+    print("Current Heading: ", locHead.heading, "Current x val: ", locHead.x, "RightMostLaser: ", laser.laserRanges[0]) #print some random data to the command line
 
 # end of control loop snippet
