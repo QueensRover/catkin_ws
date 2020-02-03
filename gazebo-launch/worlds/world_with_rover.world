@@ -813,7 +813,7 @@
         <yawGaussianNoise>0</yawGaussianNoise>
         <yawScaleError>0</yawScaleError>
       </plugin>
-      <plugin name='rover_gps_plugin' filename='/libhector_gazebo_ros_magnetic.soTEMP'>
+      <plugin name='rover_gps_plugin' filename='/libhector_gazebo_ros_magnetic.so'>
         <frameId>rover</frameId>
       </plugin>
       <plugin name='rover_imu_plugin' filename='/libhector_gazebo_ros_imu.so'>

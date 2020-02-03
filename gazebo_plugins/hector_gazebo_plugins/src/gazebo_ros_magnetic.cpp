@@ -29,7 +29,8 @@
 #include <hector_gazebo_plugins/gazebo_ros_magnetic.h>
 #include <gazebo/common/Events.hh>
 #include <gazebo/physics/physics.hh>
-
+#include <std_msgs/Float32.h>
+#include <math.h>
 static const double DEFAULT_MAGNITUDE           = 1.0;
 static const double DEFAULT_REFERENCE_HEADING   = 0.0;
 static const double DEFAULT_DECLINATION         = 0.0;
@@ -57,6 +58,7 @@ GazeboRosMagnetic::~GazeboRosMagnetic()
 // Load the controller
 void GazeboRosMagnetic::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
 {
+  ROS_INFO("MAG");
   world = _model->GetWorld();
 
   // load parameters
@@ -66,7 +68,7 @@ void GazeboRosMagnetic::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
     namespace_.clear();
 
   if (!_sdf->HasElement("topicName"))
-    topic_ = "magnetic";
+    topic_ = "heading";
   else
     topic_ = _sdf->GetElement("topicName")->Get<std::string>();
 
@@ -136,7 +138,7 @@ void GazeboRosMagnetic::Load(physics::ModelPtr _model, sdf::ElementPtr _sdf)
   }
 
   node_handle_ = new ros::NodeHandle(namespace_);
-  publisher_ = node_handle_->advertise<geometry_msgs::Vector3Stamped>(topic_, 1);
+  publisher_ = node_handle_->advertise<std_msgs::Float32>(topic_, 1);
 
   // setup dynamic_reconfigure server
   dynamic_reconfigure_server_.reset(new dynamic_reconfigure::Server<SensorModelConfig>(ros::NodeHandle(*node_handle_, topic_)));
@@ -182,8 +184,9 @@ void GazeboRosMagnetic::Update()
   magnetic_field_.vector.y = field.y;
   magnetic_field_.vector.z = field.z;
 #endif
-
-  publisher_.publish(magnetic_field_);
+  std_msgs::Float32 msg;
+  msg.data = atan2(magnetic_field_.vector.x, magnetic_field_.vector.y) + 3.141592653;
+  publisher_.publish(msg);
 }
 
 // Register this plugin with the simulator
