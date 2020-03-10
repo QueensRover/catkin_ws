@@ -10,6 +10,7 @@
 #include "ros/ros.h"
 #include "ros/callback_queue.h"
 #include "ros/subscribe_options.h"
+#include "std_msgs/Float32.h"
 
 namespace gazebo
 {
@@ -28,8 +29,10 @@ namespace gazebo
         physics::LinkPtr link;
         std::string link_name_;
         std::string topic;
+        std::string headingTopic;
         ros::NodeHandle nodeHandle;
         ros::Publisher posPub;
+        ros::Publisher headingPub;
         std::thread rosQueueThread;
 
 
