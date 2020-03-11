@@ -1,6 +1,7 @@
 rm ~/catkin_ws/devel/libhector*
-cp ~/unified-launch/gazebo-launch/worlds/world_with_rover.world ~/catkin_ws/src/gazebo-launch/worlds/
-cp ~/unified-launch/gazebo_plugins/hector_gazebo_plugins/src/gazebo_ros_magnetic.cpp ~/catkin_ws/src/gazebo_plugins/hector_gazebo_plugins/src/
-cd ~/catkin_ws
-catkin_make
+cp ~/unified-launch/ros-gazebo/plugins/gps_plugin.* ~/catkin_ws/src/ros-gazebo/plugins/
+cd ~/catkin_ws/src/ros-gazebo/plugins/build
+cmake ..
+make
+cp ~/catkin_ws/src/ros-gazebo/plugins/build/*.so ~/catkin_ws/devel/lib/
 echo "Finished running script"

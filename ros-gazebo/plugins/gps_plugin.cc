@@ -35,7 +35,7 @@ void GpsPlugin::QueueThread() {
         msg.y = pose.Pos().Y();
         msg.z = pose.Pos().Z();
         std_msgs::Float32 headingMsg;
-        headingMsg.data = pose.Rot().Z();
+        headingMsg.data = pose.Rot().Z() * 3.141592653 ;
         headingPub.publish(headingMsg);
         posPub.publish(msg);
         loop_rate.sleep();
