@@ -67,6 +67,7 @@
     </node>
 
 
+    <node pkg="simulation" type="gazebo_wheels.py" name="gazebo_wheels" output="screen" />
 
         <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find qset_launch)/params/qset.rviz" /> -->
 </launch>

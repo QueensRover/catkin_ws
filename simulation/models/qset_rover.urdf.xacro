@@ -452,28 +452,6 @@
         <origin rpy="0 0 0" xyz="0 0 ${rover_total_height}"/>
     </joint>
 
-    <link name="laser_link">
-         <visual>
-            <geometry>
-                <box size="0.1 0.1 0.1"/>
-            </geometry>
-	    <origin rpy="0 0 0" xyz="${0.1 / -2} 0 0"/>
-            <material name="white"/>
-        </visual>
-        <collision>
-            <geometry>
-                <box size="0.1 0.1 0.1"/>
-            </geometry>
-	    <origin rpy="0 0 0" xyz="${0.1 / -2} 0 0"/>
-        </collision>
-        <xacro:default_inertial mass="10"/>
-    </link>
-    <joint name="laser_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="laser_link"/>
-        <origin rpy="0 0 0" xyz="0.6 0 0"/>
-    </joint>
-
 
     <xacro:pontoon side="left" reflect="1"/>
     <xacro:pontoon side="right" reflect="-1"/>
@@ -542,19 +520,19 @@
         </plugin>
     </gazebo>
 
-    <gazebo reference="laser_link">
+    <gazebo reference="base_link">
         <sensor type="ray" name="laz">
             <always_on>true</always_on>
-            <pose>0 0 0 0 0 0</pose>
+            <pose>0 0 0.5 0 0 0</pose>
             <visualize>true</visualize>
             <update_rate>30</update_rate>
             <ray>
                 <scan>
                     <horizontal>
-                        <samples>30</samples>
+                        <samples>15</samples>
                         <resolution>1</resolution>
-                        <min_angle>-${pi/2}</min_angle>
-                        <max_angle>${pi/2}</max_angle>
+                        <min_angle>-${pi/4}</min_angle>
+                        <max_angle>${pi/4}</max_angle>
                     </horizontal>
                     <vertical>
                         <samples>1</samples>
@@ -571,7 +549,7 @@
             </ray>
             <plugin name="gazebo_ros_head_hokuyo_controller" filename="libgazebo_ros_laser.so">
                 <topicName>/scan</topicName>
-                <frameName>laser_link</frameName>
+                <frameName>base_link</frameName>
             </plugin>
         </sensor>
 
