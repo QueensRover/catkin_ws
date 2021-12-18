@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ROSSettings">
-    <option name="rosPath" value="/opt/ros/kinetic" />
-    <option name="workspacePath" value="$PROJECT_DIR$/../../.." />
-    <option name="additionalSources" value="$PROJECT_DIR$/../../auto_control:/home/owen/catkin_ws/src/owen_launch:/home/owen/catkin_ws/src/qset_launch:/home/owen/catkin_ws/src/ros_sabertooth:/home/owen/catkin_ws/src/wheel-control:/opt/ros/kinetic/share" />
-  </component>
-</project>

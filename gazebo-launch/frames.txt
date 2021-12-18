@@ -1,8 +1,0 @@
-HERE IS THE LIST OF FRAMES ON THE ROVER
-LOCATION	FRAME_ID
-leddar  	"leddar"
-camera  	"camera"
-rover(baselink) "rover"
-odom		"odom"
-map		    "map"
-IMU         "imu"
