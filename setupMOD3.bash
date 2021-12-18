@@ -29,10 +29,6 @@ rm .catkin_workspace
 catkin init
 catkin clean -y
 catkin build 
-cd ~/catkin_ws/src/unified-launch/ros-gazebo/plugins/build
-sudo rm ./CMake*
-sudo cmake ..
-sudo make
 echo "export GAZEBO_PLUGIN_PATH=~/catkin_ws/devel/lib" >> ~/.bashrc
 
 

@@ -33,15 +33,8 @@ Once this has finished, go back to your Ubuntu 18.04 window and run the followin
 
 After running the commands you should expect to see a window open with a pair of eyes in it. The eyes should follow the mouse
 
-Congradulations! You have finished the first part of the Setup
+Congratulations! You have finished the first part of the Setup
 
 This next part of the instructions will cover installing the simulation environment. All commands must be run in the Ubunut 18.04 terminal
 
-```
-sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
-curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | sudo apt-key add -
-sudo apt update
-sudo apt install ros-melodic-desktop-full
-echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
-echo "source /opt/ros/melodic/setup.bash" >> ~/.bashrc
-```
+`curl https://gitlab.com/qset-mod-3/unified-launch/-/raw/master/installer.sh | sh -`
