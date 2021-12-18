@@ -20,6 +20,11 @@ rosdep install --from-paths src --ignore-src -r -y
 cd ~/catkin_ws/src/unified-launch
 source ~/.bashrc
 cd ~/catkin_ws/
+rm -r .catkin_tools
+rm -r build
+rm -r devel
+rm -r logs
+rm .catkin_workspace
 catkin init
 catkin clean -y
 catkin build 
