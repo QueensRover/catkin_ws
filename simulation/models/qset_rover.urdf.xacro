@@ -1,80 +1,80 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="qset_rover">
-    <xacro:include filename="$(find simulation)/models/gazebo.xacro"/>
-    <xacro:include filename="$(find simulation)/models/realsense.xacro"/>
+    <xacro:include filename="$(find simulation)/models/gazebo.xacro" />
+    <xacro:include filename="$(find simulation)/models/realsense.xacro" />
     <!--Materials start-->
     <material name="blue">
-        <color rgba="0 0 0.8 1"/>
+        <color rgba="0 0 0.8 1" />
     </material>
     <material name="white">
-        <color rgba="1 1 1 1"/>
+        <color rgba="1 1 1 1" />
     </material>
 
     <material name="red">
-        <color rgba="1 0 0 1"/>
+        <color rgba="1 0 0 1" />
     </material>
     <!--Materials end-->
     <!--Params Start-->
-    <xacro:property name="elec_box_width" value="0.386"/>
-    <xacro:property name="elec_box_depth" value="0.258"/>
-    <xacro:property name="elec_box_height" value="0.115"/>
-    <xacro:property name="pontoon_width" value="0.069"/>
-    <xacro:property name="pontoon_length" value="0.829"/>
-    <xacro:property name="rocker_angle" value="0.61"/>
-    <xacro:property name="rocker_horizontal_length" value="0.31"/>
-    <xacro:property name="rocker_diagonal_length" value="0.39"/>
-    <xacro:property name="rocker_width" value="0.057"/>
-    <xacro:property name="rocker_height" value="0.051"/>
-    <xacro:property name="rocker_height_offset" value="0.22"/>
-    <xacro:property name="wheel_radius" value="0.121"/>
-    <xacro:property name="wheel_thickness" value="0.116"/>
-    <xacro:property name="arm_base_width" value="0.15"/>
-    <xacro:property name="arm_base_height" value="0.1"/>
-    <xacro:property name="upper_arm_length" value="0.5"/>
-    <xacro:property name="forearm_length" value="0.4"/>
+    <xacro:property name="elec_box_width" value="0.386" />
+    <xacro:property name="elec_box_depth" value="0.258" />
+    <xacro:property name="elec_box_height" value="0.115" />
+    <xacro:property name="pontoon_width" value="0.069" />
+    <xacro:property name="pontoon_length" value="0.829" />
+    <xacro:property name="rocker_angle" value="0.61" />
+    <xacro:property name="rocker_horizontal_length" value="0.31" />
+    <xacro:property name="rocker_diagonal_length" value="0.39" />
+    <xacro:property name="rocker_width" value="0.057" />
+    <xacro:property name="rocker_height" value="0.051" />
+    <xacro:property name="rocker_height_offset" value="0.22" />
+    <xacro:property name="wheel_radius" value="0.121" />
+    <xacro:property name="wheel_thickness" value="0.116" />
+    <xacro:property name="arm_base_width" value="0.15" />
+    <xacro:property name="arm_base_height" value="0.1" />
+    <xacro:property name="upper_arm_length" value="0.5" />
+    <xacro:property name="forearm_length" value="0.4" />
     <xacro:property name="forearm_lever_length" value="0.2" />
     <xacro:property name="forearm_lever_angle" value="25" /> <!-- In degrees-->
-    <xacro:property name="linear_actuator_base_length" value="0.4"/>
-    <xacro:property name="linear_actuator_piston_length" value="0.3"/>
-    <xacro:property name="linear_actuator_travel_distance" value="0.2"/>
-    <xacro:property name="linear_actuator_mount_distance_from_shoulder" value="0.1"/>
-    <xacro:property name="end_effector_length" value="0.2"/>
-    <xacro:property name="end_effector_thickness" value="0.05"/>
-    <xacro:property name="end_effector_width" value="0.1"/>
-    <xacro:property name="arm_width" value="0.1"/>
-    <xacro:property name="arm_height" value="0.05"/>
+    <xacro:property name="linear_actuator_base_length" value="0.4" />
+    <xacro:property name="linear_actuator_piston_length" value="0.3" />
+    <xacro:property name="linear_actuator_travel_distance" value="0.2" />
+    <xacro:property name="linear_actuator_mount_distance_from_shoulder" value="0.1" />
+    <xacro:property name="end_effector_length" value="0.2" />
+    <xacro:property name="end_effector_thickness" value="0.05" />
+    <xacro:property name="end_effector_width" value="0.1" />
+    <xacro:property name="arm_width" value="0.1" />
+    <xacro:property name="arm_height" value="0.05" />
     <xacro:property name="wrist_interconnect_length" value="0.05" />
-    <xacro:property name="rover_total_height" value="0.4"/>
+    <xacro:property name="rover_total_height" value="0.4" />
 
     <xacro:macro name="default_inertial" params="mass">
         <inertial>
-            <mass value="${mass}"/>
+            <mass value="${mass}" />
             <inertia ixx="1.0" ixy="0.0" ixz="0.0"
-                     iyy="1.0" iyz="0.0"
-                     izz="1.0"/>
+                iyy="1.0" iyz="0.0"
+                izz="1.0" />
         </inertial>
     </xacro:macro>
     <xacro:macro name="pontoon" params="side reflect">
         <link name="${side}_pontoon">
             <visual>
                 <geometry>
-                    <box size="${pontoon_length} ${pontoon_width} ${elec_box_height}"/>
+                    <box size="${pontoon_length} ${pontoon_width} ${elec_box_height}" />
                 </geometry>
-                <material name="white"/>
+                <material name="white" />
             </visual>
             <collision>
                 <geometry>
-                    <box size="${pontoon_length} ${pontoon_width} ${elec_box_height}"/>
+                    <box size="${pontoon_length} ${pontoon_width} ${elec_box_height}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="10"/>
+            <xacro:default_inertial mass="10" />
         </link>
 
         <joint name="elec_box_to_${side}_pontoon" type="fixed">
-            <parent link="base_link"/>
-            <child link="${side}_pontoon"/>
+            <parent link="base_link" />
+            <child link="${side}_pontoon" />
             <origin rpy="0 0 0"
-                    xyz="${pontoon_length/2 - elec_box_depth} ${(elec_box_width / 2 + pontoon_width / 2) * reflect} 0"/>
+                xyz="${pontoon_length/2 - elec_box_depth} ${(elec_box_width / 2 + pontoon_width / 2) * reflect} 0" />
         </joint>
     </xacro:macro>
 
@@ -83,24 +83,25 @@
         <link name="${location}_${side}_wheel">
             <visual>
                 <geometry>
-                    <cylinder length="${wheel_thickness}" radius="${wheel_radius}"/>
+                    <cylinder length="${wheel_thickness}" radius="${wheel_radius}" />
                 </geometry>
-                <material name="red"/>
+                <material name="red" />
             </visual>
 
             <collision>
                 <geometry>
-                    <cylinder length="${wheel_thickness}" radius="${wheel_radius}"/>
+                    <cylinder length="${wheel_thickness}" radius="${wheel_radius}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="2"/>
+            <xacro:default_inertial mass="2" />
         </link>
         <joint name="${location}_${side}_wheel_joint" type="continuous">
-            <parent link="${location}_${side}_diagonal"/>
-            <child link="${location}_${side}_wheel"/>
-            <origin xyz="${(rocker_diagonal_length / 2 - rocker_height / 2) * reflect_fb} ${(rocker_width / 2 + wheel_thickness / 2) * reflect_lr} 0"
-                    rpy="-1.570795 0 0"/>
-            <axis xyz="0 0 1"/>
+            <parent link="${location}_${side}_diagonal" />
+            <child link="${location}_${side}_wheel" />
+            <origin
+                xyz="${(rocker_diagonal_length / 2 - rocker_height / 2) * reflect_fb} ${(rocker_width / 2 + wheel_thickness / 2) * reflect_lr} 0"
+                rpy="-1.570795 0 0" />
+            <axis xyz="0 0 1" />
 
         </joint>
 
@@ -115,9 +116,9 @@
         </transmission>
         <gazebo reference="${location}_${side}_wheel">
             <kp>1000000.0</kp> <!-- kp and kd for rubber -->
-            <kd>100.0</kd>
-            <mu1>10.0</mu1>
-            <mu2>1.0</mu2>
+            <kd>1.0</kd>
+            <mu1>1.0</mu1>
+            <mu2>0.001</mu2>
             <fdir1>1 0 0</fdir1> <!-- is this correct? -->
             <maxVel>1.0</maxVel>
             <minDepth>0.00</minDepth>
@@ -129,46 +130,47 @@
         <link name="arm_base">
             <visual>
                 <geometry>
-                    <box size="${arm_base_width} ${elec_box_width} ${arm_base_height}"/>
+                    <box size="${arm_base_width} ${elec_box_width} ${arm_base_height}" />
                 </geometry>
             </visual>
             <collision>
                 <geometry>
-                    <box size="${arm_base_width} ${elec_box_width} ${arm_base_height}"/>
+                    <box size="${arm_base_width} ${elec_box_width} ${arm_base_height}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="0.01"/>
+            <xacro:default_inertial mass="0.01" />
         </link>
 
         <joint name="base_to_arm_base_joint" type="fixed">
-            <parent link="base_link"/>
-            <child link="arm_base"/>
-            <origin rpy="0 0 0" xyz="${pontoon_length/2 - arm_base_width/2 + pontoon_length/2 - elec_box_depth} 0 0"/>
+            <parent link="base_link" />
+            <child link="arm_base" />
+            <origin rpy="0 0 0"
+                xyz="${pontoon_length/2 - arm_base_width/2 + pontoon_length/2 - elec_box_depth} 0 0" />
         </joint>
 
         <link name="upper_arm">
             <visual>
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${upper_arm_length}"/>
+                    <box size="${arm_height} ${arm_width} ${upper_arm_length}" />
                 </geometry>
-                <origin xyz="0 0 ${upper_arm_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${upper_arm_length/2 }" rpy="0 0 0" />
             </visual>
             <collision>
-                <origin xyz="0 0 ${upper_arm_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${upper_arm_length/2 }" rpy="0 0 0" />
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${upper_arm_length}"/>
+                    <box size="${arm_height} ${arm_width} ${upper_arm_length}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="0.01"/>
+            <xacro:default_inertial mass="0.01" />
 
         </link>
         <joint name="shoulder" type="revolute">
-            <parent link="arm_base"/>
-            <child link="upper_arm"/>
-            <origin xyz="0 0 ${arm_base_height / 2}" rpy="0 0 0"/>
-            <axis xyz="0 1 0"/>
-            <limit lower="${-3.14159/2}" upper="${3.14159/2}" effort="100" velocity="3"/>
-            <dynamics damping="2.0"/>
+            <parent link="arm_base" />
+            <child link="upper_arm" />
+            <origin xyz="0 0 ${arm_base_height / 2}" rpy="0 0 0" />
+            <axis xyz="0 1 0" />
+            <limit lower="${-3.14159/2}" upper="${3.14159/2}" effort="100" velocity="3" />
+            <dynamics damping="2.0" />
         </joint>
         <transmission name="shoulder_trans">
             <type>transmission_interface/SimpleTransmission</type>
@@ -183,41 +185,41 @@
         <link name="forearm">
             <visual>
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${forearm_length}"/>
+                    <box size="${arm_height} ${arm_width} ${forearm_length}" />
                 </geometry>
-                <origin xyz="0 0 ${forearm_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${forearm_length/2 }" rpy="0 0 0" />
             </visual>
             <collision>
-                <origin xyz="0 0 ${forearm_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${forearm_length/2 }" rpy="0 0 0" />
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${forearm_length}"/>
+                    <box size="${arm_height} ${arm_width} ${forearm_length}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="0.01"/>
+            <xacro:default_inertial mass="0.01" />
         </link>
 
         <link name="wrist_interconnect">
             <visual>
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${wrist_interconnect_length}"/>
+                    <box size="${arm_height} ${arm_width} ${wrist_interconnect_length}" />
                 </geometry>
-                <origin xyz="0 0 ${wrist_interconnect_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${wrist_interconnect_length/2 }" rpy="0 0 0" />
             </visual>
             <collision>
-                <origin xyz="0 0 ${wrist_interconnect_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${wrist_interconnect_length/2 }" rpy="0 0 0" />
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${wrist_interconnect_length}"/>
+                    <box size="${arm_height} ${arm_width} ${wrist_interconnect_length}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="0.01"/>
+            <xacro:default_inertial mass="0.01" />
         </link>
         <joint name="wrist_pitch" type="revolute">
-            <parent link="forearm"/>
-            <child link="wrist_interconnect"/>
-            <origin xyz="0 0 ${forearm_length}" rpy="0 0 0"/>
-            <axis xyz="0 1 0"/>
-            <limit lower="${-3.14159+0.5}" upper="${3.14159-0.5}" effort="100" velocity="3"/>
-            <dynamics damping="2.0"/>
+            <parent link="forearm" />
+            <child link="wrist_interconnect" />
+            <origin xyz="0 0 ${forearm_length}" rpy="0 0 0" />
+            <axis xyz="0 1 0" />
+            <limit lower="${-3.14159+0.5}" upper="${3.14159-0.5}" effort="100" velocity="3" />
+            <dynamics damping="2.0" />
         </joint>
 
         <transmission name="wrist_pitch_trans">
@@ -233,24 +235,24 @@
         <link name="end_effector">
             <visual>
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${end_effector_length}"/>
+                    <box size="${arm_height} ${arm_width} ${end_effector_length}" />
                 </geometry>
-                <origin xyz="0 0 ${end_effector_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${end_effector_length/2 }" rpy="0 0 0" />
             </visual>
             <collision>
-                <origin xyz="0 0 ${end_effector_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${end_effector_length/2 }" rpy="0 0 0" />
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${end_effector_length}"/>
+                    <box size="${arm_height} ${arm_width} ${end_effector_length}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="0.01"/>
+            <xacro:default_inertial mass="0.01" />
         </link>
         <joint name="wrist_roll" type="continuous">
-            <parent link="wrist_interconnect"/>
-            <child link="end_effector"/>
-            <origin xyz="0 0 ${wrist_interconnect_length}" rpy="0 0 0"/>
-            <axis xyz="0 0 1"/>
-            <dynamics damping="2.0"/>
+            <parent link="wrist_interconnect" />
+            <child link="end_effector" />
+            <origin xyz="0 0 ${wrist_interconnect_length}" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <dynamics damping="2.0" />
         </joint>
         <transmission name="wrist_roll_trans">
             <type>transmission_interface/SimpleTransmission</type>
@@ -266,106 +268,107 @@
     <xacro:macro name="armreal">
         <xacro:armcommon />
         <joint name="forearm_forearm_lever_joint" type="fixed">
-            <parent link="forearm_lever"/>
-            <child link="forearm"/>
-            <origin xyz="0 0 ${forearm_lever_length}" rpy="0 ${-forearm_lever_angle * pi / 180.0} 0"/>
-            <axis xyz="0 1 0"/>
+            <parent link="forearm_lever" />
+            <child link="forearm" />
+            <origin xyz="0 0 ${forearm_lever_length}" rpy="0 ${-forearm_lever_angle * pi / 180.0} 0" />
+            <axis xyz="0 1 0" />
         </joint>
         <link name="forearm_lever">
             <visual>
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${forearm_lever_length}"/>
+                    <box size="${arm_height} ${arm_width} ${forearm_lever_length}" />
                 </geometry>
-                <origin xyz="0 0 ${forearm_lever_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${forearm_lever_length/2 }" rpy="0 0 0" />
             </visual>
             <collision>
-                <origin xyz="0 0 ${forearm_lever_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${forearm_lever_length/2 }" rpy="0 0 0" />
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${forearm_lever_length}"/>
+                    <box size="${arm_height} ${arm_width} ${forearm_lever_length}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="0.01"/>
+            <xacro:default_inertial mass="0.01" />
         </link>
 
         <link name="linear_actuator_base">
             <visual>
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${linear_actuator_base_length}"/>
+                    <box size="${arm_height} ${arm_width} ${linear_actuator_base_length}" />
                 </geometry>
-                <origin xyz="0 0 ${linear_actuator_base_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${linear_actuator_base_length/2 }" rpy="0 0 0" />
             </visual>
             <collision>
-                <origin xyz="0 0 ${linear_actuator_base_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${linear_actuator_base_length/2 }" rpy="0 0 0" />
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${linear_actuator_base_length}"/>
+                    <box size="${arm_height} ${arm_width} ${linear_actuator_base_length}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="0.01"/>
+            <xacro:default_inertial mass="0.01" />
         </link>
         <link name="linear_actuator_piston">
             <visual>
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${linear_actuator_piston_length}"/>
+                    <box size="${arm_height} ${arm_width} ${linear_actuator_piston_length}" />
                 </geometry>
-                <origin xyz="0 0 ${linear_actuator_piston_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${linear_actuator_piston_length/2 }" rpy="0 0 0" />
             </visual>
             <collision>
-                <origin xyz="0 0 ${linear_actuator_piston_length/2 }" rpy="0 0 0"/>
+                <origin xyz="0 0 ${linear_actuator_piston_length/2 }" rpy="0 0 0" />
                 <geometry>
-                    <box size="${arm_height} ${arm_width} ${linear_actuator_piston_length}"/>
+                    <box size="${arm_height} ${arm_width} ${linear_actuator_piston_length}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="0.01"/>
+            <xacro:default_inertial mass="0.01" />
         </link>
         <joint name="linear_actuator" type="prismatic">
-            <parent link="linear_actuator_base"/>
-            <child link="linear_actuator_piston"/>
-            <origin xyz="0 0 ${linear_actuator_base_length}" rpy="0 0 0"/>
-            <axis xyz="0 0 1"/>
-            <limit lower="${-linear_actuator_travel_distance}" upper="0" effort="200" velocity="200"/>
+            <parent link="linear_actuator_base" />
+            <child link="linear_actuator_piston" />
+            <origin xyz="0 0 ${linear_actuator_base_length}" rpy="0 0 0" />
+            <axis xyz="0 0 1" />
+            <limit lower="${-linear_actuator_travel_distance}" upper="0" effort="200" velocity="200" />
         </joint>
-<!--        <transmission name="linear_actuator_transmission">-->
-<!--            <type>transmission_interface/SimpleTransmission</type>-->
-<!--            <joint name="linear_actuator">-->
-<!--                <hardwareInterface>VelocityJointInterface</hardwareInterface>-->
-<!--            </joint>-->
-<!--            <actuator name="linear_actuator_motor">-->
-<!--                <hardwareInterface>VelocityJointInterface</hardwareInterface>-->
-<!--                <mechanicalReduction>1</mechanicalReduction>-->
-<!--            </actuator>-->
-<!--        </transmission>-->
+        <!--        <transmission name="linear_actuator_transmission">-->
+        <!--            <type>transmission_interface/SimpleTransmission</type>-->
+        <!--            <joint name="linear_actuator">-->
+        <!--                <hardwareInterface>VelocityJointInterface</hardwareInterface>-->
+        <!--            </joint>-->
+        <!--            <actuator name="linear_actuator_motor">-->
+        <!--                <hardwareInterface>VelocityJointInterface</hardwareInterface>-->
+        <!--                <mechanicalReduction>1</mechanicalReduction>-->
+        <!--            </actuator>-->
+        <!--        </transmission>-->
         <joint name="linear_actuator_forearm_lever" type="continuous">
-            <parent link="linear_actuator_piston"/>
-            <child link="forearm_lever"/>
-            <origin xyz="0 0 ${linear_actuator_piston_length}" rpy="0 0 0"/>
-            <axis xyz="0 1 0"/>
-<!--            <limit lower="${-3.1}" upper="${3.1}" effort="100" velocity="3"/>-->
+            <parent link="linear_actuator_piston" />
+            <child link="forearm_lever" />
+            <origin xyz="0 0 ${linear_actuator_piston_length}" rpy="0 0 0" />
+            <axis xyz="0 1 0" />
+            <!--            <limit lower="${-3.1}" upper="${3.1}" effort="100" velocity="3"/>-->
 
         </joint>
         <joint name="upper_arm_linear_actuator_base" type="continuous">
-            <parent link="upper_arm"/>
-            <child link="linear_actuator_base"/>
-            <origin xyz="0 0 ${linear_actuator_mount_distance_from_shoulder}" rpy="0 ${pi} 0"/>
-            <axis xyz="0 1 0"/>
-<!--            <limit lower="${-3.1}" upper="${3.1}" effort="100" velocity="3"/>-->
+            <parent link="upper_arm" />
+            <child link="linear_actuator_base" />
+            <origin xyz="0 0 ${linear_actuator_mount_distance_from_shoulder}" rpy="0 ${pi} 0" />
+            <axis xyz="0 1 0" />
+            <!--            <limit lower="${-3.1}" upper="${3.1}" effort="100" velocity="3"/>-->
 
         </joint>
         <gazebo>
-            <plugin name="linearElbowPlugin" filename="$(find simulation)/build/liblinearElbowPlugin.so"/>
+            <plugin name="linearElbowPlugin"
+                filename="$(find simulation)/build/liblinearElbowPlugin.so" />
         </gazebo>
     </xacro:macro>
 
     <xacro:macro name="armsimple">
-       <xacro:armcommon />
+        <xacro:armcommon />
 
 
         <joint name="elbow" type="revolute">
-            <parent link="upper_arm"/>
-            <child link="forearm"/>
-            <origin xyz="0 0 ${upper_arm_length}" rpy="0 0 0"/>
-            <axis xyz="0 1 0"/>
-            <limit lower="${-3.14159+0.5}" upper="${3.14159-0.5}" effort="100" velocity="3"/>
-            <dynamics damping="2.0"/>
+            <parent link="upper_arm" />
+            <child link="forearm" />
+            <origin xyz="0 0 ${upper_arm_length}" rpy="0 0 0" />
+            <axis xyz="0 1 0" />
+            <limit lower="${-3.14159+0.5}" upper="${3.14159-0.5}" effort="100" velocity="3" />
+            <dynamics damping="2.0" />
         </joint>
         <transmission name="elbow_trans">
             <type>transmission_interface/SimpleTransmission</type>
@@ -385,113 +388,115 @@
             <link name="${location}_${side}_diagonal">
                 <visual>
                     <geometry>
-                        <box size="${rocker_diagonal_length} ${rocker_width} ${rocker_height}"/>
+                        <box size="${rocker_diagonal_length} ${rocker_width} ${rocker_height}" />
                     </geometry>
-                    <material name="red"/>
+                    <material name="red" />
                 </visual>
                 <collision>
                     <geometry>
-                        <box size="${rocker_diagonal_length} ${rocker_width} ${rocker_height}"/>
+                        <box size="${rocker_diagonal_length} ${rocker_width} ${rocker_height}" />
                     </geometry>
                 </collision>
-                <xacro:default_inertial mass="1"/>
+                <xacro:default_inertial mass="1" />
             </link>
             <joint name="${side}_rocker_to_${location}_diagonal" type="fixed">
-                <parent link="${side}_rocker_horizontal"/>
-                <child link="${location}_${side}_diagonal"/>
+                <parent link="${side}_rocker_horizontal" />
+                <child link="${location}_${side}_diagonal" />
                 <origin rpy="0 ${rocker_angle * reflect_diag} 0 "
-                        xyz="${(rocker_horizontal_length / 2  + rocker_height + 0.1)* reflect_diag} 0 ${rocker_height_offset / -2}"/>
+                    xyz="${(rocker_horizontal_length / 2  + rocker_height + 0.1)* reflect_diag} 0 ${rocker_height_offset / -2}" />
             </joint>
 
         </xacro:macro>
         <link name="${side}_rocker_horizontal">
             <visual>
                 <geometry>
-                    <box size="${rocker_horizontal_length} ${rocker_width} ${rocker_height}"/>
+                    <box size="${rocker_horizontal_length} ${rocker_width} ${rocker_height}" />
                 </geometry>
-                <material name="red"/>
+                <material name="red" />
             </visual>
             <collision>
                 <geometry>
-                    <box size="${rocker_horizontal_length} ${rocker_width} ${rocker_height}"/>
+                    <box size="${rocker_horizontal_length} ${rocker_width} ${rocker_height}" />
                 </geometry>
             </collision>
-            <xacro:default_inertial mass="2"/>
+            <xacro:default_inertial mass="2" />
         </link>
         <joint name="${side}_pontoon_to_rocker" type="fixed">
-            <parent link="${side}_pontoon"/>
-            <child link="${side}_rocker_horizontal"/>
-            <origin rpy="0 0 0" xyz="-0.0 ${(pontoon_width / 2 + rocker_width / 2) * reflect} 0"/>
+            <parent link="${side}_pontoon" />
+            <child link="${side}_rocker_horizontal" />
+            <origin rpy="0 0 0" xyz="-0.0 ${(pontoon_width / 2 + rocker_width / 2) * reflect} 0" />
         </joint>
-        <xacro:diagonal location="front" reflect_diag="1"/>
-        <xacro:diagonal location="back" reflect_diag="-1"/>
+        <xacro:diagonal location="front" reflect_diag="1" />
+        <xacro:diagonal location="back" reflect_diag="-1" />
 
     </xacro:macro>
 
 
-    <link name="base_footprint"/>
+    <link name="base_footprint" />
 
     <link name="base_link">
         <visual>
             <geometry>
-                <box size="${elec_box_depth} ${elec_box_width} ${elec_box_height}"/>
+                <box size="${elec_box_depth} ${elec_box_width} ${elec_box_height}" />
             </geometry>
-            <origin rpy="0 0 0" xyz="${elec_box_depth / -2} 0 0"/>
-            <material name="white"/>
+            <origin rpy="0 0 0" xyz="${elec_box_depth / -2} 0 0" />
+            <material name="white" />
         </visual>
         <collision>
             <geometry>
-                <box size="${elec_box_depth} ${elec_box_width} ${elec_box_height}"/>
+                <box size="${elec_box_depth} ${elec_box_width} ${elec_box_height}" />
             </geometry>
         </collision>
-        <xacro:default_inertial mass="10"/>
+        <xacro:default_inertial mass="10" />
     </link>
     <joint name="base_joint" type="fixed">
-        <parent link="base_footprint"/>
-        <child link="base_link"/>
-        <origin rpy="0 0 0" xyz="0 0 ${rover_total_height}"/>
+        <parent link="base_footprint" />
+        <child link="base_link" />
+        <origin rpy="0 0 0" xyz="0 0 ${rover_total_height}" />
     </joint>
 
     <link name="laser_link">
-         <visual>
+        <visual>
             <geometry>
-                <box size="0.1 0.1 0.1"/>
+                <box size="0.1 0.1 0.1" />
             </geometry>
-	    <origin rpy="0 0 0" xyz="${0.1 / -2} 0 0"/>
-            <material name="white"/>
+            <origin rpy="0 0 0" xyz="${0.1 / -2} 0 0" />
+            <material name="white" />
         </visual>
         <collision>
             <geometry>
-                <box size="0.1 0.1 0.1"/>
+                <box size="0.1 0.1 0.1" />
             </geometry>
-	    <origin rpy="0 0 0" xyz="${0.1 / -2} 0 0"/>
+            <origin rpy="0 0 0" xyz="${0.1 / -2} 0 0" />
         </collision>
-        <xacro:default_inertial mass="10"/>
+        <xacro:default_inertial mass="10" />
     </link>
     <joint name="laser_joint" type="fixed">
-        <parent link="base_link"/>
-        <child link="laser_link"/>
-        <origin rpy="0 0 0" xyz="0.6 0 0"/>
+        <parent link="base_link" />
+        <child link="laser_link" />
+        <origin rpy="0 0 0" xyz="0.6 0 0" />
     </joint>
 
-    <xacro:pontoon side="left" reflect="1"/>
-    <xacro:pontoon side="right" reflect="-1"/>
-    <xacro:rocker side="right" reflect="-1"/>
-    <xacro:rocker side="left" reflect="1"/>
-    <xacro:wheel side="left" location="front" reflect_lr="1" reflect_fb="1"/>
-    <xacro:wheel side="right" location="front" reflect_lr="-1" reflect_fb="1"/>
-    <xacro:wheel side="left" location="back" reflect_lr="1" reflect_fb="-1"/>
-    <xacro:wheel side="right" location="back" reflect_lr="-1" reflect_fb="-1"/>
-        <!--<xacro:armreal/> -->
+    <xacro:pontoon side="left" reflect="1" />
+    <xacro:pontoon side="right" reflect="-1" />
+    <xacro:rocker side="right" reflect="-1" />
+    <xacro:rocker side="left" reflect="1" />
+    <xacro:wheel side="left" location="front" reflect_lr="1" reflect_fb="1" />
+    <xacro:wheel side="right" location="front" reflect_lr="-1" reflect_fb="1" />
+    <xacro:wheel side="left" location="back" reflect_lr="1" reflect_fb="-1" />
+    <xacro:wheel side="right" location="back" reflect_lr="-1" reflect_fb="-1" />
+    <!--<xacro:armreal/> -->
 
-    <xacro:realsense suffix="left" parent="left_pontoon" x="${pontoon_length /2}" y="0" z="0" roll="0"
-                     pitch="${0*3.14159}" yaw="0.4"/>
-    <xacro:gazebo_realsense suffix="left"/>
+    <xacro:realsense suffix="left" parent="left_pontoon" x="${pontoon_length /2}" y="0" z="0"
+        roll="0"
+        pitch="${0*3.14159}" yaw="0.4" />
+    <xacro:gazebo_realsense suffix="left" />
 
 
-    <xacro:realsense suffix="right" parent="right_pontoon" x="${pontoon_length /2}" y="0" z="0" roll="0"
-                     pitch="${0*3.14159}" yaw="-0.4"/>
-    <xacro:gazebo_realsense suffix="right"/>
+    <xacro:realsense suffix="right" parent="right_pontoon" x="${pontoon_length /2}" y="0" z="0"
+        roll="0"
+        pitch="${0*3.14159}" yaw="-0.4" />
+    <xacro:gazebo_realsense suffix="right" />
 
     <gazebo>
         <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
