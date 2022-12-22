@@ -16,16 +16,6 @@ run the following 3 commands to set up for GUI access
 `echo "export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0" >> ~/.bashrc`
 `source ~/.bashrc`
 
-
-Install VcXsrv. This will allow you to see the simulated robot.
-It can be downloaded from https://sourceforge.net/projects/vcxsrv/
-
-Download and run the installer
-
-Once the installer is finished, run XLaunch from the start menu. 
-    -- When running this use the default settings except uncheck "Native opengl" and check "Disable access control"
-    -- I would advise saving the configuration
-
 Once this has finished, go back to your Ubuntu 18.04 window and run the following commands to install and run a test for the GUI support you have just added
 `sudo apt update`
 `sudo apt install x11-apps`
@@ -38,3 +28,7 @@ Congratulations! You have finished the first part of the Setup
 This next part of the instructions will cover installing the simulation environment. All commands must be run in the Ubunut 18.04 terminal
 
 `curl https://gitlab.com/qset-mod-3/unified-launch/-/raw/master/installer.sh | sh -`
+
+If you get and error saying that curl isn't installed, or it can't find curl you can run 
+
+`sudo apt install -y curl`
